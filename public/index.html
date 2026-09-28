@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🎯 OOP MISSION</title>
+    <meta name="description" content="Mini game edukasi kuis OOP untuk siswa SMK kelas XI" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <div class="brand-wrap">
+          <div class="brand-icon">🎯</div>
+          <div>
+            <p class="eyebrow">Mini Challenge</p>
+            <h1>OOP MISSION</h1>
+          </div>
+        </div>
+        <button id="teacher-login-button" class="ghost-button subtle-button" aria-label="Login guru">🔐</button>
+      </header>
+
+      <main class="app-frame">
+        <section id="welcome-screen" class="screen active">
+          <div class="hero-card">
+            <div class="hero-badge">Pemrograman Berorientasi Objek</div>
+            <h2>Uji pemahamanmu. Selesaikan semua challenge!</h2>
+            <div class="info-grid">
+              <div class="info-item">🧠 15 Challenge</div>
+            </div>
+
+            <form id="student-form" class="student-form">
+              <label>
+                <span>NAMA LENGKAP</span>
+                <input id="student-name" name="studentName" type="text" placeholder="Masukkan nama lengkap" required />
+              </label>
+
+              <label>
+                <span>KELAS</span>
+                <input id="student-class" name="studentClass" type="text" placeholder="Contoh: XI RPL 1" required />
+              </label>
+
+              <button type="submit" class="primary-button large-button">🚀 MULAI MISSION</button>
+            </form>
+          </div>
+        </section>
+
+        <section id="quiz-screen" class="screen hidden">
+          <div class="quiz-topbar">
+            <div>
+              <p class="muted-label">Nama</p>
+              <strong id="quiz-name"></strong>
+            </div>
+            <div>
+              <p class="muted-label">Kelas</p>
+              <strong id="quiz-class"></strong>
+            </div>
+          </div>
+
+          <div class="challenge-header">
+            <div class="challenge-text-wrap">
+              <span class="challenge-index" id="challenge-index">CHALLENGE 1 / 15</span>
+              <span class="challenge-tag" id="challenge-tag">CONCEPT CHALLENGE</span>
+            </div>
+          </div>
+
+          <div class="progress-wrap" aria-label="Progress kuis">
+            <div id="progress-bar" class="progress-bar"></div>
+          </div>
+
+          <div id="question-card" class="question-card"></div>
+
+          <div class="nav-buttons">
+            <button id="prev-button" class="secondary-button">⬅️ KEMBALI</button>
+            <button id="next-button" class="primary-button">LANJUT ➡️</button>
+          </div>
+        </section>
+
+        <section id="result-screen" class="screen hidden">
+          <div class="result-card">
+            <div class="result-emoji">🎉</div>
+            <h2>MISSION COMPLETE!</h2>
+
+            <div class="result-grid">
+              <div><span>Nama</span><strong id="result-name"></strong></div>
+              <div><span>Kelas</span><strong id="result-class"></strong></div>
+            </div>
+
+            <div class="score-section">
+              <h3>SKOR</h3>
+              <div class="score-big"><span id="result-score"></span> / 100</div>
+              <div class="score-sub">
+                <span>Benar: <strong id="result-correct"></strong></span>
+                <span>Salah: <strong id="result-wrong"></strong></span>
+              </div>
+            </div>
+
+            <p id="result-message" class="result-message"></p>
+
+            <button id="show-review-button" class="primary-button large-button">🔎 LIHAT PEMBAHASAN</button>
+          </div>
+        </section>
+
+        <section id="review-screen" class="screen hidden">
+          <div class="section-heading">
+            <h2>Pembahasan</h2>
+            <button id="back-to-home" class="ghost-button">🏠 Kembali ke mulai</button>
+          </div>
+          <div id="review-content" class="review-content"></div>
+        </section>
+
+        <section id="teacher-login-screen" class="screen hidden">
+          <div class="teacher-card login-card">
+            <div class="teacher-icon">🔐</div>
+            <h2>Dashboard Guru</h2>
+            <form id="teacher-login-form" class="teacher-form">
+              <label>
+                <span>Username</span>
+                <input id="teacher-username" type="text" placeholder="Username" required />
+              </label>
+              <label>
+                <span>Password</span>
+                <input id="teacher-password" type="password" placeholder="Password" required />
+              </label>
+              <button type="submit" class="primary-button large-button">LOGIN</button>
+            </form>
+          </div>
+        </section>
+
+        <section id="teacher-dashboard-screen" class="screen hidden">
+          <div class="section-heading dashboard-header">
+            <div>
+              <p class="eyebrow">Dashboard</p>
+              <h2>Hasil Siswa</h2>
+            </div>
+            <button id="logout-teacher" class="ghost-button">Keluar</button>
+          </div>
+
+          <div class="teacher-tools">
+            <label class="search-box">
+              <span>🔍 Search nama</span>
+              <input id="teacher-search" type="text" placeholder="Cari nama siswa" />
+            </label>
+
+            <label class="filter-box">
+              <span>Filter kelas</span>
+              <select id="teacher-filter">
+                <option value="all">Semua kelas</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="qr-panel">
+            <div class="qr-info">
+              <h3>QR Code Akses Siswa</h3>
+              <p id="public-url-text">URL publik belum tersedia.</p>
+              <button id="download-qr-button" class="ghost-button small-button">⬇ Download QR</button>
+            </div>
+            <img id="qr-code-image" alt="QR code akses siswa" class="qr-code" />
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Nama</th>
+                  <th>Kelas</th>
+                  <th>Benar</th>
+                  <th>Salah</th>
+                  <th>Nilai</th>
+                  <th>Durasi</th>
+                  <th>Tanggal</th>
+                </tr>
+              </thead>
+              <tbody id="teacher-results-body"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="teacher-detail-screen" class="screen hidden">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Detail Siswa</p>
+              <h2 id="detail-name">-</h2>
+            </div>
+            <button id="back-to-dashboard" class="ghost-button">⬅️ Kembali</button>
+          </div>
+
+          <div id="detail-summary" class="detail-summary"></div>
+          <div id="detail-questions" class="detail-questions"></div>
+        </section>
+      </main>
+    </div>
+
+    <div id="modal-overlay" class="modal-overlay hidden" aria-live="polite">
+      <div class="modal-card">
+        <h3 id="modal-title"></h3>
+        <p id="modal-message"></p>
+        <div class="modal-actions">
+          <button id="modal-secondary" class="ghost-button">← KEMBALI</button>
+          <button id="modal-primary" class="primary-button">✓ YA, SELESAIKAN KUIS</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="toast" class="toast hidden"></div>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
